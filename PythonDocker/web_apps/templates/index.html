@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container py-5">
+    <div class="row py-4">
+        <div class="col-lg-6 mx-auto">
+            <form action= "{{ url_for('GetClass')}}" method="post" enctype="multipart/form-data">
+                <b><label for="myfile">Select a file:</label></b>
+                <input type="file" id="myfile" name="myfile"  onchange="loadFile(event)" class="btn btn-light m-0 rounded-pill px-4" accept=".png, .jpg, .jpeg">
+                <br />
+                         <br/>
+                         <p><img id="output" width="300" height="300"/></p>                       
+               
+                <input required type="submit" class="w3-button w3-green rounded-pill px-4" id="btn-predict"value="Predict">
+            </form>   
+            {% if error is not none: %}
+            <p><label name='error'> {{ error }}</label></p>
+        {% endif %}
+            {% if answer is not none: %}
+                <b><label name='answer'> {{ answer }}</label> </b>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
